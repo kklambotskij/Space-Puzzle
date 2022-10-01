@@ -110,7 +110,7 @@ public class FieldController : MonoBehaviour
     {
         for (int i = 0; i < hints.Count; i++)
         {
-            Destroy(hints[i]);
+            Destroy(hints[i].gameObject);
         }
         hints.Clear();
     }
@@ -162,11 +162,11 @@ public class FieldController : MonoBehaviour
     {
         for (int i = 0; i < levels.figurs.Count; i++)
         {
-            levels.figurs[i].SetActive(false);
+            //levels.figurs[i].SetActive(false);
         }
     }
 
-    List<MoveFigurs> hints = new List<MoveFigurs>();
+    private List<MoveFigurs> hints = new List<MoveFigurs>();
 
     public void ClickOnHelpButton()
     {
