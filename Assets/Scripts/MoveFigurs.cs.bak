@@ -1,0 +1,152 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class MoveFigurs : MonoBehaviour
+{
+    [SerializeField] Transform pivot;
+    [SerializeField] public Transform field;
+    [SerializeField] AudioSource rotate;
+    [SerializeField] AudioSource magnet;
+    [SerializeField] Collider2D smallCollider;
+
+    [SerializeField] public List<Transform> cells;
+    [SerializeField] List<FieldCellLonpos> fieldCells;
+
+    public bool disabled;
+    private static float zIndex = 0;
+    private Vector3 downPos;
+
+    private Vector3[] startPos = new Vector3[] { new Vector3(-4f + (1 * 2.1f), -4f, zIndex), new Vector3(-4f + 2 * 2.1f, -4f, zIndex), new Vector3(-4f + 3 * 2.1f, -4f, zIndex),
+                                    new Vector3(-4f + 1 * 2.1f, -4f + -1.5f, zIndex),  new Vector3(-4f + 2 * 2.1f, -4f + -1.5f, zIndex), new Vector3(-4f + 3 * 2.1f, -4f + -1.5f, zIndex) };
+    public Vector3 startPosition;
+    private void OnMouseDown()
+    {
+        if (!disabled)
+        {
+            CheckFieldCell();
+            Camera.main.GetComponent<FieldController>().Last(null);
+            pivot.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex));
+            downPos = transform.position;
+            transform.SetParent(pivot);
+        }
+    }
+    private void OnMouseDrag()
+    {
+        if (!disabled)
+        {
+            pivot.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex - 0.01f));
+
+            RaycastHit2D hit = Physics2D.GetRayIntersection(new Ray(transform.position, new Vector3(0, 0, 10)));
+
+            if (hit.collider != null && hit.collider.CompareTag("SmallFigure"))
+            {
+                transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                smallCollider.enabled = true;
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
+    private void OnMouseUp()
+    {
+        if (!disabled)
+        {
+            pivot.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex));
+            transform.SetParent(field);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(new Ray(transform.position, new Vector3(0, 0, 10)));
+            if (hit.collider != null && hit.collider.CompareTag("SmallFigure"))
+            {
+                rotate.Play();
+                transform.Rotate(0, 0, 60);
+            }
+            else
+            {
+                smallCollider.enabled = false;
+            }
+            CheckForMatch();
+            Camera.main.GetComponent<FieldController>().SaveProgress();
+        }
+    }
+    public void CheckFieldCell()
+    {
+        for (int i = 0; i < fieldCells.Count; i++)
+        {
+            fieldCells[i].ChangeBusyCell(false);
+        }
+    }
+
+    public bool CheckForMatch()
+    {
+        fieldCells.Clear();
+        GetComponent<Collider2D>().enabled = false;
+
+        Vector3 minPos = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        int count = 0;
+
+        for (int i = 0; i < cells.Count; i++)
+        {
+            RaycastHit2D hit = Physics2D.GetRayIntersection(new Ray(cells[i].position, new Vector3(0, 0, 10)));
+            if (hit)
+            {
+                if (hit.collider.CompareTag("FieldCell"))
+                {
+                    FieldCellLonpos fc = hit.collider.GetComponent<FieldCellLonpos>();
+                    if (!fc.IsBusy())
+                    {
+                        count++;
+                        fieldCells.Add(fc);
+                    }
+                }
+            }
+        }
+        bool match = count == cells.Count;
+        if (match)
+        {
+            for (int i = 0; i < fieldCells.Count; i++)
+            {
+                fieldCells[i].ChangeBusyCell(true);
+
+                if (Vector3.Distance(cells[i].transform.position, fieldCells[i].transform.position) < Vector3.Distance(cells[i].transform.position, minPos))
+                {
+                    minPos = cells[i].transform.position - fieldCells[i].transform.position;                    
+                }
+            }
+            minPos.z = 0.01f;
+            gameObject.transform.position -= minPos;
+            Camera.main.GetComponent<FieldController>().CheckCells();
+        }        
+        GetComponent<Collider2D>().enabled = true;
+        print(string.Concat(name, " ", count, " ", count == cells.Count));
+        if (count == cells.Count)
+        {
+            magnet.Play();
+            return true;
+        }
+        ReturnFigurePosition();
+        return false;
+    }
+
+    private void ReturnFigurePosition()
+    {
+        transform.position = startPosition;
+        transform.localScale = new Vector3(0.5f, 0.5f, 1);
+    }
+
+    private void ReturnPosFigure()
+    {
+        for (int i = 0; i < startPos.Length; i++)
+        {
+            bool isEmptyPos = Camera.main.GetComponent<FieldController>().SearchPosFigurs(startPos[i]);
+            
+            if(isEmptyPos)
+            {
+                this.transform.position = startPos[i];
+                this.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                return;
+            }
+        }        
+    }
+}
