@@ -148,14 +148,13 @@ public class FieldController : MonoBehaviour
 
     public void ResetFigurs()
     {
-        var v = new Vector3(0, 10, 0);
-        pink.SetTarget(v);
-        green.SetTarget(v);
-        cyan.SetTarget(v);
-        red.SetTarget(v);
-        yellow.SetTarget(v);
-        orange.SetTarget(v);
-        blue.SetTarget(v);
+        pink.MoveAway();
+        green.MoveAway();
+        cyan.MoveAway();
+        red.MoveAway();
+        yellow.MoveAway();
+        orange.MoveAway();
+        blue.MoveAway();
     }
 
     public void HideFigurs()
@@ -193,7 +192,7 @@ public class FieldController : MonoBehaviour
                 move.SetTarget(levels.figursPos[i] + new Vector3(0, -0.25f, 10)); //0.041
                 hints.Add(move);
                 move.disabled = true;
-                move.PingPong();
+                move.MakeHint();
 
                 useHelp += 1;
                 Money.Instance.SpendMoney(75);

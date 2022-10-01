@@ -7,6 +7,7 @@ public class MoveFigurs : MonoBehaviour
 
     [SerializeField] public List<Transform> cells;
     [SerializeField] private SkinChanger[] cellSkins;
+    [SerializeField] private SpriteRenderer[] cellSprites;
 
     [SerializeField] List<FieldCellLonpos> fieldCells;
 
@@ -18,7 +19,7 @@ public class MoveFigurs : MonoBehaviour
     public bool shadow = false;
 
     private static float zIndex = 0;
-    private Vector3 pivotOffset = new Vector3(0, 1, -9);
+    private Vector3 pivotOffset = new Vector3(0, 1, 0);
     
     Color baseColor;
     Color fieldCellsColor = new Color(255, 255, 255);
@@ -36,9 +37,21 @@ public class MoveFigurs : MonoBehaviour
 
     private void Start()
     {
+        if (!dark)
+        {
+            MoveAway();
+        }
         pastPosition = transform.position;
         circle = GetComponent<CircleCollider2D>();
         cellSkins = GetComponentsInChildren<SkinChanger>();
+        cellSprites = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+    public void MoveAway()
+    {
+        Vector3 initialPosition = new Vector3(0, 15, 0);
+        targetPosition = initialPosition;
+        transform.position = initialPosition;
     }
 
     public void SetTarget(Vector3 target, bool lerp = true)
@@ -48,6 +61,11 @@ public class MoveFigurs : MonoBehaviour
             ResetLerp();
         }
         targetPosition = target;
+    }
+
+    public void SetTargetSlow(Vector3 target)
+    {
+        SetTarget(target);
     }
 
     public void SetStartPos()
@@ -97,15 +115,14 @@ public class MoveFigurs : MonoBehaviour
                 }
             }
             var v = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex - 0.01f));
-            targetPosition = new Vector3(v.x, v.y, pastPosition.z) + pivotOffset;
+            targetPosition = new Vector3(v.x, v.y, -1) + pivotOffset;
             ScaleUp();
             if (Check())
             {
-                baseColor = cells[0].GetComponentInChildren<SpriteRenderer>().color;
+                baseColor = cellSprites[0].color;
                 for (int i = 0; i < fieldCells.Count; i++)
                 {
-                    SpriteRenderer hintRenderer = fieldCells[i].GetComponentInChildren<SpriteRenderer>();
-                    hintRenderer.color = baseColor;
+                    fieldCells[i].Color(baseColor);
                 }
             }
         }
@@ -149,9 +166,9 @@ public class MoveFigurs : MonoBehaviour
     {
         for (int i = 0; i < fieldCells.Count; i++)
         {
-            SpriteRenderer hintRenderer = fieldCells[i].GetComponentInChildren<SpriteRenderer>();
-            hintRenderer.color = fieldCellsColor;
+            fieldCells[i].Color(fieldCellsColor);
         }
+
         fieldCells.Clear();
     }
 
@@ -216,26 +233,27 @@ public class MoveFigurs : MonoBehaviour
         transform.localScale = new Vector3(0.5f, 0.5f, 1);
     }
 
-    public void PingPong()
+    public void MakeHint()
     {
-        baseColor = cells[0].GetComponentInChildren<SpriteRenderer>().color;
+        baseColor = cellSprites[0].color;
         dark = true;
     }
-    float darkPong = 0.8f;
-    float darkMulty = 0.3f;
-    float darkPlus = 0.1f;
+
+    private float emission;
+    private Color finalColor;
+    private float emissionMin = 0.1f;
+    private float emissionMax = 0.4f;
+    private float emissionMulty = 2;
 
     private void Update()
     {
         if (dark)
         {
-            for (int j = 0; j < cells.Count; j++)
+            for (int j = 0; j < cellSprites.Length; j++)
             {
-                SpriteRenderer hintRenderer = cells[j].GetComponentInChildren<SpriteRenderer>();
-                float emission = 1/Mathf.PingPong(Time.time, darkPong); //Mathf.PingPong (Time.time, 1.0f);
-
-                Color finalColor = baseColor * (Mathf.LinearToGammaSpace(emission) * darkMulty + darkPlus);
-                hintRenderer.color = finalColor;
+                emission = Mathf.Abs((emissionMax - emissionMin) * Mathf.Sin(Time.time * emissionMulty)) + emissionMin;
+                finalColor = baseColor * Mathf.LinearToGammaSpace(emission);
+                cellSprites[j].color = finalColor;
             }
         }
         positionTimer += Time.deltaTime;

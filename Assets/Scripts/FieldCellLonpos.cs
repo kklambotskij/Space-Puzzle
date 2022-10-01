@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FieldCellLonpos : MonoBehaviour
 {
-    [SerializeField] bool _isBusy = false;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private bool _isBusy = false;
 
     public void ChangeBusyCell(bool isBusy)
     {
@@ -14,5 +15,10 @@ public class FieldCellLonpos : MonoBehaviour
     public bool IsBusy()
     {
         return _isBusy;
+    }
+
+    public void Color(Color color)
+    {
+        spriteRenderer.color = color;
     }
 }
