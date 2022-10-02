@@ -62,6 +62,8 @@ public class WinScreen : MonoBehaviour
             disabled = true;
             complete = false;
             Ads.Instance.ShowRewardedVideo("X3");
+#warning remove after event implementation
+            RewardedVideoFinished();
         }
     }
 

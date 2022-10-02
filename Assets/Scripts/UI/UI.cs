@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] Transform Music;
-    [SerializeField] Transform Sounds;
+    [SerializeField] MusicControl Music;
+    [SerializeField] SoundControl Sounds;
 
     [SerializeField] public Transform backButton;
     [SerializeField] public Transform helpButton;
@@ -37,11 +37,6 @@ public class UI : MonoBehaviour
     }
     public void ChangeText(string str)
     {
-        if (str == string.Empty)
-        {
-            text.gameObject.SetActive(false);
-        }
-        text.gameObject.SetActive(true);
         text.text = str;
     }
     public void Tutorial()
@@ -63,12 +58,12 @@ public class UI : MonoBehaviour
 
     public void MusicButton()
     {
-        Music.GetComponent<MusicControl>().SwitchLevel();
+        Music.SwitchLevel();
     }
 
     public void SoundsButton()
     {
-        Sounds.GetComponent<SoundControl>().SwitchLevel();
+        Sounds.SwitchLevel();
     }
 
     public void BackButton()
@@ -77,14 +72,7 @@ public class UI : MonoBehaviour
     }
     public void RestartLevel()
     {
-        Camera.main.GetComponent<FieldController>().ResetProgress();
         GameMachine.Instance.SwitchState(GameMachine.State.Game);
-        print("restart");
-    }
-    public void LoadLevel()
-    {
-        Camera.main.GetComponent<FieldController>().LoadProgress();
-        print("load");
     }
     
     public void LevelHideButtons()

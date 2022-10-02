@@ -25,11 +25,9 @@ public class GameMachine : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
         SwitchState(State.Menu, false);
-        fieldController = GetComponent<FieldController>();
     }
     private void Start()
     {
-        //Camera.main.GetComponent<PushNotifications>().CreateNotifications();
         if (!PlayerPrefs.HasKey("Tutorial"))
         {
             PlayerPrefs.SetInt("level", 1);
@@ -69,7 +67,6 @@ public class GameMachine : MonoBehaviour
     {
         state = st;
         fieldController.ClearHints();
-        fieldController.HideFigurs();
         switch (state)
         {
             case State.Levels:
@@ -120,7 +117,7 @@ public class GameMachine : MonoBehaviour
                 break;
             default:
                 break;
-        }        
+        }
     }
     private void SwitchBackGround(bool isLevelState)
     {

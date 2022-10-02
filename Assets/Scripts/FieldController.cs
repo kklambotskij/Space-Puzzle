@@ -157,14 +157,6 @@ public class FieldController : MonoBehaviour
         blue.MoveAway();
     }
 
-    public void HideFigurs()
-    {
-        for (int i = 0; i < levels.figurs.Count; i++)
-        {
-            //levels.figurs[i].SetActive(false);
-        }
-    }
-
     private List<MoveFigurs> hints = new List<MoveFigurs>();
 
     public void ClickOnHelpButton()
@@ -206,106 +198,11 @@ public class FieldController : MonoBehaviour
             shop.OpenShop();
             Debug.Log("Недостаточно денег");
         }
-        //SaveProgress();
     }
 
     public void RemindForHints()
     {
         UI.Instance.RemindForHints();
-    }
-
-    void Capture()
-    {
-        ScreenCapture.CaptureScreenshot("Screenshot" + System.DateTime.Now.Hour + System.DateTime.Now.Minute + System.DateTime.Now.Second + ".png");
-        string filePath = Application.persistentDataPath + "/" + levels.levelNumber.ToString() + ".txt";
-        try
-        {
-            string[] data = new string[7];
-            data[0] = "pink : " + pink.transform.position.ToString() + " " + pink.transform.rotation.eulerAngles.ToString();
-            data[1] = "green : " + green.transform.position.ToString() + " " + green.transform.rotation.eulerAngles.ToString();
-            data[2] = "cyan : " + cyan.transform.position.ToString() + " " + cyan.transform.rotation.ToString();
-            data[3] = "red : " + red.transform.position.ToString() + " " + red.transform.rotation.ToString();
-            data[4] = "yellow : " + yellow.transform.position.ToString() + " " + yellow.transform.rotation.ToString();
-            data[5] = "orange : " + orange.transform.position.ToString() + " " + orange.transform.rotation.ToString();
-            data[6] = "blue : " + blue.transform.position.ToString() + " " + blue.transform.rotation.ToString();
-            File.WriteAllLines(filePath, data);
-            print(filePath);
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
-    }
-
-    public void SaveProgress()
-    {
-        for (int i = 0; i < levels.figurs.Count; i++)
-        {
-            PlayerPrefs.SetInt("savedLevel", levels.levelNumber);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "x", levels.figurs[i].transform.position.x);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "y", levels.figurs[i].transform.position.y);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "z", levels.figurs[i].transform.position.z);
-
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "rx", levels.figurs[i].transform.rotation.x);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "ry", levels.figurs[i].transform.rotation.y);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "rz", levels.figurs[i].transform.rotation.z);
-            PlayerPrefs.SetFloat(levels.figurs[i].name + "rw", levels.figurs[i].transform.rotation.w);
-
-            if (levels.figurs[i].transform.localScale.x == 1)
-            {
-                PlayerPrefs.SetFloat(levels.figurs[i].name + "size", 1);
-            }
-            else
-            {
-                PlayerPrefs.SetFloat(levels.figurs[i].name + "size", 0.5f);
-            }
-        }
-    }
-
-    public void LoadProgress()
-    {
-        if (!PlayerPrefs.HasKey("savedLevel")) { return; }
-        if (PlayerPrefs.GetInt("savedLevel") != levels.levelNumber) { return; }
-        for (int i = 0; i < levels.figurs.Count; i++)
-        {
-            float x = PlayerPrefs.GetFloat(levels.figurs[i].name + "x");
-            float y = PlayerPrefs.GetFloat(levels.figurs[i].name + "y");
-            float z = PlayerPrefs.GetFloat(levels.figurs[i].name + "z");
-            levels.figurs[i].transform.position = new Vector3(x, y, z);
-            x = PlayerPrefs.GetFloat(levels.figurs[i].name + "rx");
-            y = PlayerPrefs.GetFloat(levels.figurs[i].name + "ry");
-            z = PlayerPrefs.GetFloat(levels.figurs[i].name + "rz");
-            float w = PlayerPrefs.GetFloat(levels.figurs[i].name + "rw");
-            levels.figurs[i].transform.rotation = new Quaternion(x, y, z, w);
-
-            if (PlayerPrefs.HasKey(levels.figurs[i].name + "size"))
-            {
-                float size = PlayerPrefs.GetFloat(levels.figurs[i].name + "size");
-                levels.figurs[i].transform.localScale = new Vector3(size, size, size);
-            }
-            levels.figurs[i].GetComponent<MoveFigurs>().CheckForMatch();
-        }
-    }
-
-    public void ResetProgress()
-    {
-        PlayerPrefs.DeleteKey("savedLevel");
-        string[] figurs = { "Red", "Pink", "Yellow", "Cyan", "Orange", "Blue", "Green" };
-        for (int i = 0; i < figurs.Length; i++)
-        {
-            PlayerPrefs.DeleteKey("savedLevel");
-            PlayerPrefs.DeleteKey(figurs[i] + "x");
-            PlayerPrefs.DeleteKey(figurs[i] + "y");
-            PlayerPrefs.DeleteKey(figurs[i] + "z");
-
-            PlayerPrefs.DeleteKey(figurs[i] + "rx");
-            PlayerPrefs.DeleteKey(figurs[i] + "ry");
-            PlayerPrefs.DeleteKey(figurs[i] + "rz");
-            PlayerPrefs.DeleteKey(figurs[i] + "rw");
-
-            PlayerPrefs.DeleteKey(figurs[i] + "size");
-        }
-
     }
     public void SwapFigureCells(int number)
     {
