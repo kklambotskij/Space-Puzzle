@@ -47,16 +47,16 @@ public class PrefsTest : MonoBehaviour
     void ResetAll()
     {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(Settings.LEVELS_SCENE);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void UnlockAll()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("levelsComplete", 81);
+        PlayerPrefs.SetInt("levelsComplete", 80);
         for (int i = 1; i < 81; i++)
         {
             PlayerPrefs.SetInt("level" + i.ToString(), 2);
         }
-        SceneManager.LoadScene(Settings.LEVELS_SCENE);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -12,9 +12,7 @@ public class ScrollController : MonoBehaviour
     ScrollRect m_ScrollRect;
     RectTransform m_RectTransform;
     RectTransform m_ContentRectTransform;
-    RectTransform m_SelectedRectTransform;
-
-    [SerializeField] public GameObject target;
+    [SerializeField] public RectTransform m_SelectedRectTransform;
 
     private void Start()
     {
@@ -38,9 +36,9 @@ public class ScrollController : MonoBehaviour
         m_ContentRectTransform = m_ScrollRect.content;
 
         if (PlayerPrefs.GetInt("levelsComplete") + 5 <= maxlvl)
-            target = GameObject.Find((PlayerPrefs.GetInt("levelsComplete") + 5).ToString()).gameObject;
+            m_SelectedRectTransform = GameObject.Find((PlayerPrefs.GetInt("levelsComplete") + 5).ToString()).GetComponent<RectTransform>();
         else
-            target = GameObject.Find((maxlvl + 1).ToString()).gameObject;
+            m_SelectedRectTransform = GameObject.Find((maxlvl + 1).ToString()).gameObject.GetComponent<RectTransform>();
     }
 
     void Update()
@@ -56,35 +54,30 @@ public class ScrollController : MonoBehaviour
         }
     }
 
+    [SerializeField] float selectedPosition;
+    [SerializeField] float currentScrollRectPosition;
+    [SerializeField] float above;
+    [SerializeField] float below;
+
     void UpdateScrollToSelected()
     {
-
-        // grab the current selected from the eventsystem
-        GameObject selected = target;//EventSystem.current.currentSelectedGameObject;
-
-        
-        if (selected == null)
+        if (m_SelectedRectTransform == null)
         {            
             return;
         }
-        if (selected.transform.parent != m_ContentRectTransform.transform)
+        if (m_SelectedRectTransform.transform.parent != m_ContentRectTransform.transform)
         {            
             return;
         }
-        
-               
-        m_SelectedRectTransform = selected.GetComponent<RectTransform>();
 
         // math stuff
         Vector3 selectedDifference = m_RectTransform.localPosition - m_SelectedRectTransform.localPosition;
         float contentHeightDifference = (m_ContentRectTransform.rect.height - m_RectTransform.rect.height);
 
-        float selectedPosition = (m_ContentRectTransform.rect.height - selectedDifference.y);
-        float currentScrollRectPosition = m_ScrollRect.normalizedPosition.y * contentHeightDifference;
-        float above = currentScrollRectPosition - (m_SelectedRectTransform.rect.height / 2) + m_RectTransform.rect.height;
-        float below = currentScrollRectPosition + (m_SelectedRectTransform.rect.height / 2);        
+        selectedPosition = m_ContentRectTransform.rect.height - selectedDifference.y;
+        currentScrollRectPosition = m_ScrollRect.normalizedPosition.y * contentHeightDifference;
+        above = currentScrollRectPosition - (m_SelectedRectTransform.rect.height / 2) + m_RectTransform.rect.height;
 
-        // check if selected is out of bounds
         if (selectedPosition >= above)
         {
             float step = selectedPosition - above;
@@ -98,14 +91,14 @@ public class ScrollController : MonoBehaviour
                 scrollSpeed = 0;
             }
         }
-        else if (selectedPosition <= below)
+        else if (selectedPosition <= above)
         {
-            float step = selectedPosition - below;
+            float step = selectedPosition - above;
             float newY = currentScrollRectPosition + step;
             float newNormalizedY = newY / contentHeightDifference;
             m_ScrollRect.normalizedPosition = Vector2.Lerp(m_ScrollRect.normalizedPosition, new Vector2(0, newNormalizedY), scrollSpeed * Time.deltaTime);
 
-            if (step >= 50)
+            if (step <= 50)
             {
                 UI.Instance.touchBlock.gameObject.SetActive(false);
                 scrollSpeed = 0;

@@ -22,6 +22,11 @@ public class ChangeLevel
         ClearHelpFigurs();
         if(levelNumber <= 4)
         {
+            field.complicationText.text = $"Level {levelNumber} - EASY";
+
+            float percent = easyPercent[Random.Range(0, 3)];
+            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+
             switch (levelNumber)
             {
                 case 1:

@@ -10,12 +10,17 @@ public class Tutorial2 : MonoBehaviour
     private bool figureMove;
     private bool active;
     private bool pinkPlaced;
-    public void StartTutorial()
+
+    private void Start()
     {
         animator = GetComponent<Animator>();
         pink = FieldController.Instance.pink;
+        pinkPlaced = true;
+    }
+    public void StartTutorial()
+    {
         StopTutorial();
-        
+        pinkPlaced = false;
         UI.Instance.touchBlock.gameObject.SetActive(false);
         UI.Instance.LevelHideButtons();
         
@@ -112,7 +117,6 @@ public class Tutorial2 : MonoBehaviour
             {
                 UseHint();
                 pinkPlaced = true;
-                pink = null;
             }
         }
     }
