@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tutorial2 : MonoBehaviour
@@ -12,15 +10,12 @@ public class Tutorial2 : MonoBehaviour
     private bool figureMove;
     private bool active;
     private bool pinkPlaced;
-
-    private void Start()
+    public void StartTutorial()
     {
         animator = GetComponent<Animator>();
         pink = FieldController.Instance.pink;
-    }
-    public void StartTutorial()
-    {
         StopTutorial();
+        
         UI.Instance.touchBlock.gameObject.SetActive(false);
         UI.Instance.LevelHideButtons();
         
@@ -117,6 +112,7 @@ public class Tutorial2 : MonoBehaviour
             {
                 UseHint();
                 pinkPlaced = true;
+                pink = null;
             }
         }
     }
