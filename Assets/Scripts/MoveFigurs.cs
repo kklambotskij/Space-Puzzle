@@ -19,7 +19,7 @@ public class MoveFigurs : MonoBehaviour
     public bool shadow = false;
 
     private static float zIndex = 0;
-    private Vector3 pivotOffset = new Vector3(0, 1, 0);
+    private Vector3 pivotOffset = new Vector3(0, 2f, 0);
     
     Color baseColor;
     Color fieldCellsColor = new Color(255, 255, 255);
