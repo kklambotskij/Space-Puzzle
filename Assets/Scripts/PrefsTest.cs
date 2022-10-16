@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,10 +50,11 @@ public class PrefsTest : MonoBehaviour
     void UnlockAll()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("levelsComplete", 80);
-        for (int i = 1; i < 81; i++)
+        PlayerPrefs.SetInt("Tutorial", 1);
+        PlayerPrefs.SetInt("levelsComplete", 66);
+        for (int i = 1; i < 66; i++)
         {
-            PlayerPrefs.SetInt("level" + i.ToString(), 2);
+            PlayerPrefs.SetInt("level" + i.ToString(), 3);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

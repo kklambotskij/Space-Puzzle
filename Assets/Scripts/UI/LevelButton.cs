@@ -25,7 +25,7 @@ public class LevelButton : MonoBehaviour
         star2.SetActive(false);
         star3.SetActive(false);
         disabled = true;
-        levelText.text = name;
+        levelText.text = name == "66" ? "Playground" : name;
         if (PlayerPrefs.HasKey("levelsComplete"))
         {
             if (Convert.ToInt32(name) <= PlayerPrefs.GetInt("levelsComplete") + 1)

@@ -2361,40 +2361,8 @@ public class ChangeLevel
     }
     public void LevelFourteenTwoElements(FieldController field)
     {
-        ClearHelpFigurs();
-
-        FillingCell(0, 2, field);
-        FillingCell(4, 6, field);
-        FillingCell(9, 11, field);
-        FillingCell(15, 16, field);
-        FillingCell(20, 21, field);
-        FillingCell(26, 27, field);
-        FillingCell(31, 32, field);
-
-        Small(field.orange.gameObject, 1, 0);
-        var rightPos = new Vector3(2.404423f, 0.640481f, -1);
-        var rightRotation = new Vector3(0, 0, 120);
-        PutPositionFigure(field.orange.gameObject, rightRotation, rightPos);
-
-        Small(field.pink.gameObject, 2, 180);
-        rightPos = new Vector3(-1.360289f, -1.944038f, -1);
-        rightRotation = new Vector3(0, 180, 60);
-        PutPositionFigure(field.pink.gameObject, rightRotation, rightPos);
-
-        Small(field.cyan.gameObject, 3, 0);
-        rightPos = new Vector3(0.4191344f, -1.498013f, -1);
-        rightRotation = new Vector3(0, 0, 60);
-        PutPositionFigure(field.cyan.gameObject, rightRotation, rightPos);
-
-        Small(field.green.gameObject, 3, 0, -1.5f);
-        rightPos = new Vector3(-0.2685226f, 1.050322f, -1);
-        rightRotation = new Vector3(0, 0, 60);
-        PutPositionFigure(field.green.gameObject, rightRotation, rightPos);
-
-        Small(field.red.gameObject, 2, 180, -1.5f);
-        rightPos = new Vector3(-0.2124361f, -0.6999998f, -1);
-        rightRotation = new Vector3(0, 180, 120);
-        PutPositionFigure(field.red.gameObject, rightRotation, rightPos);
+        //66
+        LevelSixOneElement(field);
     }
     public void LevelFifteenTwoElements(FieldController field)
     {
@@ -3048,50 +3016,23 @@ public class ChangeLevel
     public void LevelSixOneElement(FieldController field)
     {
         ClearHelpFigurs();
+        Small2(field.green.gameObject, 1, Random.Range(0, 2) == 1 ? 180 : 0) ;
+        Small2(field.orange.gameObject, 2, Random.Range(0, 2) == 1 ? 180 : 0);
+        Small2(field.pink.gameObject, 3, Random.Range(0, 2) == 1 ? 180 : 0);
+        Small2(field.red.gameObject, 1, Random.Range(0, 2) == 1 ? 180 : 0, -1.5f);
+        Small2(field.cyan.gameObject, 3, Random.Range(0, 2) == 1 ? 180 : 0, -1.5f);
+        Small2(field.blue.gameObject, 2, Random.Range(0, 2) == 1 ? 180 : 0, -1.5f);
+        Small2(field.yellow.gameObject, 4, Random.Range(0, 2) == 1 ? 180 : 0, -1.5f);
 
-        FillingCell(0, 1, field);
-
-        FillingCell(5, 7, field);
-
-        FillingCell(11, 13, field);
-
-        //FillingCell(16, 17, field);
-
-        //FillingCell(20, 22, field);
-
-        //FillingCell(26, 27, field);
-
-        //FillingCell(31, 32, field);
-
-        Small(field.green.gameObject, 1, 0);
-        var rightPos = new Vector3(1.268523f, -1.050322f, -1);
-        var rightRotation = new Vector3(0, 0, 240);
+        var rightPos = new Vector3(-100, -100, -100);
+        var rightRotation = new Vector3(0, 0, 0);
         PutPositionFigure(field.green.gameObject, rightRotation, rightPos);
-
-        Small(field.orange.gameObject, 2, 180);
-        rightPos = new Vector3(-1.154424f, 0.1995192f, -1);
-        rightRotation = new Vector3(180, 0, 60);
         PutPositionFigure(field.orange.gameObject, rightRotation, rightPos);
-
-        Small(field.pink.gameObject, 3, 180);
-        rightPos = new Vector3(1.360289f, 0.2159624f, -1);
-        rightRotation = new Vector3(0, 180, 60);
         PutPositionFigure(field.pink.gameObject, rightRotation, rightPos);
-
-        Small(field.red.gameObject, 1, 0, -1.5f);
-        rightPos = new Vector3(-1.779423f, -1.29f, -1);
-        rightRotation = new Vector3(0, 0, 60);
         PutPositionFigure(field.red.gameObject, rightRotation, rightPos);
-
-        Small(field.cyan.gameObject, 3, 0, -1.5f);
-        rightPos = new Vector3(-0.08086495f, -2.851987f, -1);
-        rightRotation = new Vector3(0, 0, 240);
         PutPositionFigure(field.cyan.gameObject, rightRotation, rightPos);
-
-        Small(field.blue.gameObject, 2, 180, -1.5f);
-        rightPos = new Vector3(1.360289f, 1.944038f, -1);
-        rightRotation = new Vector3(180, 0, 60);
         PutPositionFigure(field.blue.gameObject, rightRotation, rightPos);
+        PutPositionFigure(field.yellow.gameObject, rightRotation, rightPos);
     }
     private void FillingCell(int start, int end, FieldController field)
     {
@@ -3106,6 +3047,18 @@ public class ChangeLevel
 
         MoveFigurs move = figure.GetComponent<MoveFigurs>();
         move.SetTarget(new Vector3(-4f + number * 2.1f, -5f + yPos, 9)); 
+        move.SetStartPos();
+
+        figure.transform.rotation = new Quaternion(0, yRotation, 0, 0);
+        figure.transform.localScale = new Vector3(smallSize, smallSize, 1);
+    }
+
+    public void Small2(GameObject figure, int number, float yRotation, float yPos = 0)
+    {
+        figure.SetActive(true);
+
+        MoveFigurs move = figure.GetComponent<MoveFigurs>();
+        move.SetTarget(new Vector3(-5f + number * 2.1f, -5f + yPos, 9));
         move.SetStartPos();
 
         figure.transform.rotation = new Quaternion(0, yRotation, 0, 0);
