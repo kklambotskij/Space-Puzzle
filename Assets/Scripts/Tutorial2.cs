@@ -21,7 +21,6 @@ public class Tutorial2 : MonoBehaviour
     {
         StopTutorial();
         pinkPlaced = false;
-        UI.Instance.touchBlock.gameObject.SetActive(false);
         UI.Instance.LevelHideButtons();
         
         move = pink;
@@ -56,11 +55,6 @@ public class Tutorial2 : MonoBehaviour
         UI.Instance.helpButton.gameObject.SetActive(true);
         UI.Instance.ChangeText(UI.Instance.local.UseHint());
         UI.Instance.helpButton.GetComponent<Animator>().SetTrigger("Pop");
-    }
-
-    public void DisableLock()
-    {
-
     }
 
     public void StopHint()

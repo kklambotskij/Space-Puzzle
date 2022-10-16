@@ -15,7 +15,6 @@ public class Tutorial : MonoBehaviour
         animator = GetComponent<Animator>();
 
         ResetTutorial();
-        UI.Instance.touchBlock.gameObject.SetActive(false);
         UI.Instance.LevelHideButtons();
         PlayerPrefs.SetFloat("sounds", 0.5f);
         PlayerPrefs.SetFloat("music", 0.01f);
