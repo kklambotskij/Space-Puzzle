@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -7,11 +6,7 @@ public class StarController : MonoBehaviour
 {
     SpriteRenderer[] stars;
 
-    public bool isPassed = false;
-
-    float time = .25f;
-    float currentTime = 0;
-    int numberStar = 0;
+    private bool isPassed = false;
     private void Awake()
     {
         stars = transform.GetComponentsInChildren<SpriteRenderer>();
@@ -29,6 +24,7 @@ public class StarController : MonoBehaviour
             if (PlayerPrefs.GetString("LastPassedLevel") == name)
             {
                 isPassed = true;
+                StartCoroutine(StarProgress());
                 PlayerPrefs.DeleteKey("LastPassedLevel");
             }
         }
@@ -51,26 +47,12 @@ public class StarController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private IEnumerator StarProgress()
     {
-        if (isPassed)
+        for (int i = 0; i < stars.Length; i++)
         {
-            currentTime += Time.deltaTime;
-
-            if (currentTime >= time)
-            {
-                if (numberStar >= stars.Length)
-                {
-                    return;
-                }
-
-                stars[numberStar].gameObject.SetActive(true);
-                //stars[numberStar].GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("sounds");
-                //stars[numberStar].GetComponent<AudioSource>().Play();
-
-                numberStar += 1;
-                currentTime = 0;
-            }
+            stars[i].gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }
