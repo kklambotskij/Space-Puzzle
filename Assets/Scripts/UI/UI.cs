@@ -10,7 +10,6 @@ public class UI : MonoBehaviour
     [SerializeField] public Transform helpButton;
     [SerializeField] public Transform restartButton;
     [SerializeField] public Transform coinsBlock;
-    [SerializeField] public Transform touchBlock;
     [SerializeField] Text text;
 
     public static UI Instance { get; private set; } // static singleton

@@ -95,7 +95,6 @@ public class FieldController : MonoBehaviour
             if (levels.levelNumber == 1)
             {
                 PlayerPrefs.SetInt("Tutorial", 1);
-                tutorial.DisableLock();
             }
             UI.Instance.LevelHideButtons();
             winScreen.Show(5);

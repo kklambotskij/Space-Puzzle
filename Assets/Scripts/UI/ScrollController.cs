@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Collections;
 
 [RequireComponent(typeof(ScrollRect))]
@@ -8,7 +7,7 @@ public class ScrollController : MonoBehaviour
 {
     public float scrollSpeed = 10f;
 
-    int maxlvl = 81;
+    int maxlvl = 67;
     ScrollRect m_ScrollRect;
     RectTransform m_RectTransform;
     RectTransform m_ContentRectTransform;
@@ -21,15 +20,6 @@ public class ScrollController : MonoBehaviour
     public void UpdateTarget()
     {
         scrollSpeed = 2;
-        if(PlayerPrefs.HasKey("levelsComplete"))
-            if (PlayerPrefs.GetInt("levelsComplete") > 4)
-            {
-                UI.Instance.touchBlock.gameObject.SetActive(true);
-            }
-            else
-                UI.Instance.touchBlock.gameObject.SetActive(false);
-        else
-            UI.Instance.touchBlock.gameObject.SetActive(false);
 
         m_ScrollRect = GetComponent<ScrollRect>();
         m_RectTransform = GetComponent<RectTransform>();
@@ -38,7 +28,8 @@ public class ScrollController : MonoBehaviour
         if (PlayerPrefs.GetInt("levelsComplete") + 5 <= maxlvl)
             m_SelectedRectTransform = GameObject.Find((PlayerPrefs.GetInt("levelsComplete") + 5).ToString()).GetComponent<RectTransform>();
         else
-            m_SelectedRectTransform = GameObject.Find((maxlvl + 1).ToString()).gameObject.GetComponent<RectTransform>();
+            m_SelectedRectTransform = GameObject.Find((maxlvl).ToString()).gameObject.GetComponent<RectTransform>();
+        print(m_SelectedRectTransform.name + "target set");
     }
 
     void Update()
@@ -87,7 +78,6 @@ public class ScrollController : MonoBehaviour
 
             if(step <= 50)
             {
-                UI.Instance.touchBlock.gameObject.SetActive(false);
                 scrollSpeed = 0;
             }
         }
@@ -100,7 +90,6 @@ public class ScrollController : MonoBehaviour
 
             if (step <= 50)
             {
-                UI.Instance.touchBlock.gameObject.SetActive(false);
                 scrollSpeed = 0;
             }
         }        
