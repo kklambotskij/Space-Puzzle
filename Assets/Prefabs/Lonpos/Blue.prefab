@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017633544377077674}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.51141787, y: -0.45, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.38, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2424847707103900046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.48858166, y: -0.45, z: 0}
+  m_LocalPosition: {x: -0.5, y: -0.38, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2589192028501479130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5114179, y: -0.45, z: 0}
+  m_LocalPosition: {x: 1.5, y: -0.38, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -365,6 +365,7 @@ MonoBehaviour:
   - {fileID: 8251594075192302491}
   - {fileID: 5579175427959069419}
   cellSkins: []
+  cellSprites: []
   fieldCells: []
   disabled: 0
   dark: 0
@@ -512,7 +513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5316887165383743499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.98858166, y: 0.45, z: 0}
+  m_LocalPosition: {x: -1, y: 0.485, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -596,7 +597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8856649753202677056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4885817, y: 1.35, z: 0}
+  m_LocalPosition: {x: -1.5, y: 1.35, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
