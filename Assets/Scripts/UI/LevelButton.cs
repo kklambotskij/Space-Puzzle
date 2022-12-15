@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
@@ -11,26 +10,26 @@ public class LevelButton : MonoBehaviour
 
     [SerializeField] Text levelText;
 
-    [SerializeField] GameObject star1;
-    [SerializeField] GameObject star2;
-    [SerializeField] GameObject star3;
-    
+    [SerializeField] GameObject[] stars;
 
     [SerializeField] private bool disabled;
 
     private void Awake()
     {
         button.image.sprite = Off;
-        star1.SetActive(false);
-        star2.SetActive(false);
-        star3.SetActive(false);
+        button.interactable = false;
         disabled = true;
+
+        stars[0].SetActive(false);
+        stars[1].SetActive(false);
+        stars[2].SetActive(false);
+        
         levelText.text = name == "66" ? "Playground" : name;
         if (PlayerPrefs.HasKey("levelsComplete"))
         {
             if (Convert.ToInt32(name) <= PlayerPrefs.GetInt("levelsComplete") + 1)
             {
-                disabled = false;
+                Unlock();
             }
         }
         else if (Convert.ToInt32(name) == 1)
@@ -45,6 +44,8 @@ public class LevelButton : MonoBehaviour
     public void Unlock()
     {
         disabled = false;
+        button.interactable = true;
+        button.image.sprite = On;
     }
     public void LoadLevel()
     {
@@ -55,37 +56,24 @@ public class LevelButton : MonoBehaviour
         }
     }
 
-    public void CompleteLevel(int stars)
+    public void CompleteLevel(int count)
     {
-        if (stars <= 0 || stars > 3)
+        if (count <= 0 || count > 3)
         {
             button.image.sprite = Off;
-            star1.SetActive(false);
-            star2.SetActive(false);
-            star3.SetActive(false);
+            stars[0].SetActive(false);
+            stars[1].SetActive(false);
+            stars[2].SetActive(false);
             Debug.LogWarning("Level not passed, number of stars: " + stars);
             return;
         }
-        PlayerPrefs.SetInt("level" + name, stars);
+
+        PlayerPrefs.SetInt("level" + name, count);
         button.image.sprite = On;
 
-        switch (stars)
+        for (int i = 0; i < count; i++)
         {
-            case 1: 
-                star1.SetActive(true);
-                star2.SetActive(false);
-                star3.SetActive(false);
-                break;
-            case 2:
-                star1.SetActive(true);
-                star2.SetActive(true);
-                star3.SetActive(false);
-                break;
-            case 3:
-                star1.SetActive(true);
-                star2.SetActive(true);
-                star3.SetActive(true);
-                break;
+            stars[i].SetActive(true);
         }
     }
 }

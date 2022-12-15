@@ -14,17 +14,27 @@ public class StarController : MonoBehaviour
         {
             stars[i].gameObject.SetActive(false);
         }
-        Complete();
+        Complete(true);
     }
 
-    public void Complete()
+    public void Complete(bool instant = false)
     {
         if (PlayerPrefs.HasKey("LastPassedLevel"))
         {
             if (PlayerPrefs.GetString("LastPassedLevel") == name)
             {
                 isPassed = true;
-                StartCoroutine(StarProgress());
+                if (instant)
+                {
+                    for (int i = 0; i < stars.Length; i++)
+                    {
+                        stars[i].gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    StartCoroutine(StarProgress());
+                }
                 PlayerPrefs.DeleteKey("LastPassedLevel");
             }
         }
@@ -52,7 +62,8 @@ public class StarController : MonoBehaviour
         for (int i = 0; i < stars.Length; i++)
         {
             stars[i].gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.25f);
+            UI.Instance.PlayStarSound();
+            yield return new WaitForSeconds(0.3f);
         }
     }
 }

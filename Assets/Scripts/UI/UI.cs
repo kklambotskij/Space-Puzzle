@@ -6,6 +6,8 @@ public class UI : MonoBehaviour
     [SerializeField] MusicControl Music;
     [SerializeField] SoundControl Sounds;
 
+    [SerializeField] AudioSource starSound;
+
     [SerializeField] public Transform backButton;
     [SerializeField] public Transform helpButton;
     [SerializeField] public Transform restartButton;
@@ -102,5 +104,10 @@ public class UI : MonoBehaviour
     public void RemindForHints()
     {
         helpButton.GetComponent<Animator>().SetTrigger("Pop");
+    }
+
+    public void PlayStarSound()
+    {
+        starSound.Play();
     }
 }
