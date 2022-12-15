@@ -1673,7 +1673,7 @@ AudioSource:
   m_GameObject: {fileID: 81915368}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2098967560201373111, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
   m_audioClip: {fileID: 8300000, guid: 30c5aa06255c92d4f868f6799410ef87, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -12263,6 +12263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOn: {fileID: 21300000, guid: 930ac8336171cd149a1e7bb815cf4f32, type: 3}
   soundOff: {fileID: 21300000, guid: 2980f8938e397784ab91d328a05331ff, type: 3}
+  mixer: {fileID: 24100000, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
 --- !u!114 &498196108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13696,6 +13697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green
       objectReference: {fileID: 0}
+    - target: {fileID: 6575504788064527163, guid: 10d79224dea25a041a07eb3a82522c1e, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10d79224dea25a041a07eb3a82522c1e, type: 3}
 --- !u!224 &553782737 stripped
@@ -13805,6 +13810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6232378948722094267, guid: ede6c0bf49b9f5b479f9bb388138fc7f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     - target: {fileID: 7189650972412465027, guid: ede6c0bf49b9f5b479f9bb388138fc7f, type: 3}
       propertyPath: m_Name
       value: Cyan
@@ -15857,6 +15866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 3091839568043968906, guid: d8b9997a3b7fbbf419ad35a4ceaac30b, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8b9997a3b7fbbf419ad35a4ceaac30b, type: 3}
 --- !u!224 &659804605 stripped
@@ -16969,6 +16982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicOn: {fileID: 21300000, guid: aa9174dc59659ab4196b7ba9e9bb4007, type: 3}
   musicOff: {fileID: 21300000, guid: e1ff460005843344084d77dc732f924a, type: 3}
+  mixer: {fileID: 24100000, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
 --- !u!114 &708787284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30865,6 +30879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red
       objectReference: {fileID: 0}
+    - target: {fileID: 9164741176626414634, guid: a01a9004034fc3548be8a042413d2316, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a01a9004034fc3548be8a042413d2316, type: 3}
 --- !u!224 &1312291239 stripped
@@ -35254,6 +35272,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141841404}
     m_Modifications:
+    - target: {fileID: -1381943397676884606, guid: 0b75dd89acea50b42a0148dd83d9266f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     - target: {fileID: 4218774797280574786, guid: 0b75dd89acea50b42a0148dd83d9266f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -45887,6 +45909,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141841404}
     m_Modifications:
+    - target: {fileID: 7496585155695967440, guid: af6b8e74ed9869e49ae421f535ba6eac, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     - target: {fileID: 7749833513285845391, guid: af6b8e74ed9869e49ae421f535ba6eac, type: 3}
       propertyPath: magnet
       value: 
@@ -48236,6 +48262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 5794929193816083445, guid: e4f570219ff2a4d44a99c71002bd47cb, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f570219ff2a4d44a99c71002bd47cb, type: 3}
 --- !u!224 &2134049350 stripped
@@ -48553,7 +48583,7 @@ AudioSource:
   m_GameObject: {fileID: 2141841403}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 9139170392761454798, guid: 82eb7a413bb52c7478a04ad2c9afa971, type: 2}
   m_audioClip: {fileID: 8300000, guid: f8f4c583421700e4fb2f6254e2ecb1bb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
