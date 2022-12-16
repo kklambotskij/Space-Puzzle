@@ -13,9 +13,21 @@ public class WinScreen : MonoBehaviour
     [SerializeField] Text moneyX3Text;
 
     private bool disabled;
-    private bool complete;
+
     private int moneyX1;
     private int moneyX3;
+
+    private void ShowTest(int count)
+    {
+        moneyCount.text = Money.Instance.count.ToString();
+        cheerText.text = "Тест";
+        moneyX1 = count;
+        moneyX3 = moneyX1 * 3;
+        moneyX1Text.text = $"+{moneyX1}";
+        moneyX3Text.text = $"+{moneyX3}";
+
+        disabled = false;
+    }
     public void Show(int count)
     {
         UniAndroidVibration.Vibrate(500);
@@ -29,6 +41,7 @@ public class WinScreen : MonoBehaviour
         moneyX3Text.text = $"+{moneyX3}";
 
         disabled = false;
+
         winCanvasAnimator.SetTrigger("Show");
         notNowAnimator.SetTrigger("Show");
     }
@@ -43,7 +56,6 @@ public class WinScreen : MonoBehaviour
         if (!disabled)
         {
             disabled = true;
-            complete = false;
             coinCollect.StartCoinMove(moneyX1, 
                 () =>
             {
@@ -60,7 +72,6 @@ public class WinScreen : MonoBehaviour
         if (!disabled)
         {
             disabled = true;
-            complete = false;
             Ads.Instance.ShowRewardedVideo("X3");
 #warning remove after event implementation
             RewardedVideoFinished();
@@ -84,11 +95,9 @@ public class WinScreen : MonoBehaviour
     {
         Money.Instance.GetMoney(1);
         moneyCount.text = Money.Instance.count.ToString();
-        if (!complete)
-        {
-            complete = true;
-        }
     }
+
+    //Used as Animation Event
     private void Complete()
     {
         notNowAnimator.SetTrigger("Hide");
