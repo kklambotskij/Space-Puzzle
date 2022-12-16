@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinCollect : MonoBehaviour
 {
     [SerializeField] GameObject CoinPrefab;
     [SerializeField] public Transform target;
-
-    private float startSpeed;
+    [SerializeField] float range = 400;
     public void StartCoinMove(int count, Action onComplete, Action onLastCoinEnd)
     {
         StartCoinMove(transform, count, onComplete, onLastCoinEnd);
@@ -18,15 +16,16 @@ public class CoinCollect : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
+            float x = UnityEngine.Random.Range(-range, range);
+            float y = UnityEngine.Random.Range(-range, range);
+            float speed = UnityEngine.Random.Range(20, 25);
+            var position = initial.position + new Vector3(x, y, 0);
             var coin = Instantiate(CoinPrefab, initial);
-            var x = UnityEngine.Random.Range(-100, 100);
-            var y = UnityEngine.Random.Range(-100, 100);
-            var s = startSpeed + UnityEngine.Random.Range(15, 30);
             if (i == count - 1)
             {
                 onComplete += onLastCoinEnd;
             }
-            StartCoroutine(MoveCoin(coin.transform, s/10, initial.position + new Vector3(x, y, 0), target.position, onComplete));
+            StartCoroutine(MoveCoin(coin.transform, speed / 10, position, target.position, onComplete));
         }
     }
 
