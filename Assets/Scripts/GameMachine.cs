@@ -25,6 +25,9 @@ public class GameMachine : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
         SwitchState(State.Menu, false);
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
     private void Start()
     {
