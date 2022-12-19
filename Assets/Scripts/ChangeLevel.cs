@@ -22,10 +22,10 @@ public class ChangeLevel
         ClearHelpFigurs();
         if(levelNumber <= 4)
         {
-            field.complicationText.text = $"Level {levelNumber} - EASY";
+            //field.complicationText.text = $"Level {levelNumber} - EASY";
 
-            float percent = easyPercent[Random.Range(0, 3)];
-            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+            //float percent = easyPercent[Random.Range(0, 3)];
+            //field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
 
             switch (levelNumber)
             {
@@ -45,10 +45,9 @@ public class ChangeLevel
         }
         else if (levelNumber <= 28)
         {
-            field.complicationText.text = $"Level {levelNumber} - EASY";
-
-            float percent = easyPercent[Random.Range(0, 3)];
-            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+            //field.complicationText.text = $"Level {levelNumber} - EASY";
+            //float percent = easyPercent[Random.Range(0, 3)];
+            //field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
 
             switch (levelNumber)
             {
@@ -128,10 +127,10 @@ public class ChangeLevel
         }
         else if (levelNumber <= 52)
         {
-            field.complicationText.text = $"Level {levelNumber} - MEDIUM";
+            //field.complicationText.text = $"Level {levelNumber} - MEDIUM";
 
-            float percent = mediumPercent[Random.Range(0, 3)];
-            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+            //float percent = mediumPercent[Random.Range(0, 3)];
+            //field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
 
             switch (levelNumber)
             {
@@ -211,10 +210,10 @@ public class ChangeLevel
         }
         else if (levelNumber <= 79)
         {
-            field.complicationText.text = $"Level {levelNumber} - HARD";
+            //field.complicationText.text = $"Level {levelNumber} - HARD";
 
-            float percent = hardPercent[Random.Range(0, 3)];
-            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+            //float percent = hardPercent[Random.Range(0, 3)];
+            //field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
 
             switch (levelNumber)
             {
@@ -303,10 +302,10 @@ public class ChangeLevel
         }
         else if (levelNumber <= 91)
         {
-            field.complicationText.text = $"Level {levelNumber} - VERY HARD";
+            //field.complicationText.text = $"Level {levelNumber} - VERY HARD";
 
-            float percent = veryHardPercent[Random.Range(0, 3)];
-            field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
+            //float percent = veryHardPercent[Random.Range(0, 3)];
+            //field.percentBestPlayers.text = $"Вы лучше {percent}% игроков";
 
             switch (levelNumber)
             {

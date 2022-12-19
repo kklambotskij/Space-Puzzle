@@ -111,6 +111,11 @@ public class UI : MonoBehaviour
         helpButton.GetComponent<Animator>().SetTrigger("Pop");
     }
 
+    public void StopHints()
+    {
+        helpButton.GetComponent<Animator>().SetTrigger("Stop");
+    }
+
     public void PlayStarSound()
     {
         starSound.Play();
