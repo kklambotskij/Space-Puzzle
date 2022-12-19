@@ -4,6 +4,8 @@ using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour, IUnityAdsListener
 {
+    [SerializeField] WinScreen winScreen;
+    [SerializeField] Shop shop;
     public static Ads Instance { get; private set; } // static singleton
     private void Awake()
     {
@@ -43,9 +45,7 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         if (!Advertisement.isSupported) return;
         try
         {
-            Advertisement.AddListener(this);
             Advertisement.Initialize(gameId, testMode);
-            StartCoroutine(ShowBannerWhenReady());
         }
         catch (System.Exception e)
         {
@@ -70,10 +70,6 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
         Advertisement.Banner.Show(bannerID);
     }
-    public void OnUnityAdsDidError(string message)
-    {
-
-    }
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
@@ -81,25 +77,27 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         {
             if (type == "X3")
             {
-#warning Implement Event
-                Debug.LogWarning("RewardedVideoFinished() event");
-                //WinScreen.Instance.RewardedVideoFinished();
+                winScreen.RewardedVideoFinished();
             }
             if (type == "ShopAds")
             {
-#warning Implement Event
-                Debug.LogWarning("GetMoney(15) event");
+                shop.AdReward();
             }
         }
     }
 
-    public void OnUnityAdsDidStart(string placementId)
-    {
-        
-    }
-
     public void OnUnityAdsReady(string placementId)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsDidError(string message)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsDidStart(string placementId)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -115,7 +115,7 @@ public class FieldController : MonoBehaviour
     }
     public void Complete()
     {
-        tutorial.StopHint();
+        UI.Instance.StopHints();
 
         int lvl = levels.levelNumber;
         int star = useHelp > 0 ? 2 : 3;
@@ -160,6 +160,7 @@ public class FieldController : MonoBehaviour
 
     public void ClickOnHelpButton()
     {
+        UI.Instance.StopHints();
         if (Money.Instance.count >= hintPrice)
         {
             for (int i = 0; i < levels.figurs.Count; i++)

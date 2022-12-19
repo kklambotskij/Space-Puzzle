@@ -46,6 +46,20 @@ public class Shop : MonoBehaviour
 
         });
     }
+
+    public void AdReward()
+    {
+        coinCollect.StartCoinMove(15,
+            () =>
+            {
+                Money.Instance.GetMoney(5);
+            },
+            () =>
+            {
+
+            });
+    }
+
     public void BuyThreeHundredCoints()
     {
         money.GetMoney(300);
