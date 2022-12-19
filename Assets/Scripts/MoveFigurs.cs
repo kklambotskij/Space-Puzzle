@@ -110,7 +110,7 @@ public class MoveFigurs : MonoBehaviour
                     return;
                 }
             }
-            var v = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex - 0.01f));
+            Vector3 v = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zIndex - 0.01f));
             targetPosition = new Vector3(v.x, v.y, -1) + pivotOffset;
             ScaleUp();
             if (Check())
@@ -212,6 +212,7 @@ public class MoveFigurs : MonoBehaviour
             ResetLerp();
             targetPosition = transform.position - minPos;
             targetPosition.z = -0.5f;
+            transform.position = targetPosition;
             onField = true;
             magnet.Play();
             FieldController.Instance.CheckCells();

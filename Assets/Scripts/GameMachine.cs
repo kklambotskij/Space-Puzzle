@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameMachine : MonoBehaviour
 {
-    public enum State { Levels, Game, Menu }
+    public enum State { Levels, Game, Menu, Credits }
     State state;
 
     [SerializeField] Transform gameCamera;
@@ -106,6 +106,18 @@ public class GameMachine : MonoBehaviour
             case State.Menu:
                 GameMenu.gameObject.SetActive(false);
                 MainMenu.gameObject.SetActive(true);
+
+                SwitchBackGround(false);
+                scrollView.gameObject.SetActive(false);
+                Camera.main.orthographicSize = 5;
+
+                gameCamera.transform.position = new Vector3(5.79f, 4.46f, -25);
+                gameCanvas.gameObject.SetActive(false);
+                currentState = State.Menu;
+                break;
+            case State.Credits:
+                GameMenu.gameObject.SetActive(false);
+                MainMenu.gameObject.SetActive(false);
 
                 SwitchBackGround(false);
                 scrollView.gameObject.SetActive(false);

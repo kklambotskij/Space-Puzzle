@@ -18,7 +18,7 @@ public class CoinCollect : MonoBehaviour
         {
             float x = UnityEngine.Random.Range(-range, range);
             float y = UnityEngine.Random.Range(-range, range);
-            float speed = UnityEngine.Random.Range(20, 25);
+            float speed = UnityEngine.Random.Range(15, 20);
             var position = initial.position + new Vector3(x, y, 0);
             var coin = Instantiate(CoinPrefab, initial);
             if (i == count - 1)
