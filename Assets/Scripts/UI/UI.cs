@@ -22,7 +22,7 @@ public class UI : MonoBehaviour
     {
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
-        SetLocal(Language.RU);
+        SetLocal(Language.EN);
     }
     public void SetLocal(Language lang)
     {
@@ -50,6 +50,11 @@ public class UI : MonoBehaviour
     public void StartGame()
     {
         GameMachine.Instance.SwitchState(GameMachine.State.Levels);
+    }
+
+    public void Credits()
+    {
+        GameMachine.Instance.SwitchState(GameMachine.State.Credits);
     }
 
     public void MainMenuButton()

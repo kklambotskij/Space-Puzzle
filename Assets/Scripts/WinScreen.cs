@@ -6,7 +6,6 @@ public class WinScreen : MonoBehaviour
     [SerializeField] CoinCollect coinCollect;
     [SerializeField] RectTransform winCanvas;
     [SerializeField] Animator winCanvasAnimator;
-    [SerializeField] Animator notNowAnimator;
     [SerializeField] Text cheerText;
     [SerializeField] Text moneyCount;
     [SerializeField] Text moneyX1Text;
@@ -38,12 +37,11 @@ public class WinScreen : MonoBehaviour
         moneyX1 = count;
         moneyX3 = moneyX1 * 3;
         moneyX1Text.text = $"+{moneyX1}";
-        moneyX3Text.text = $"+{moneyX3}";
+        moneyX3Text.text = $"Get +{moneyX3}";
 
         disabled = false;
 
         winCanvasAnimator.SetTrigger("Show");
-        notNowAnimator.SetTrigger("Show");
     }
 
     public void Hide()
@@ -100,7 +98,6 @@ public class WinScreen : MonoBehaviour
     //Used as Animation Event
     private void Complete()
     {
-        notNowAnimator.SetTrigger("Hide");
         FieldController.Instance.Complete();
     }
 }
