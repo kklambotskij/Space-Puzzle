@@ -1611,8 +1611,8 @@ GameObject:
   - component: {fileID: 81915373}
   - component: {fileID: 81915372}
   - component: {fileID: 81915376}
-  - component: {fileID: 81915377}
   - component: {fileID: 81915378}
+  - component: {fileID: 81915379}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1868,24 +1868,6 @@ MonoBehaviour:
   restartButton: {fileID: 2101484988}
   coinsBlock: {fileID: 1040442493}
   text: {fileID: 70276803}
---- !u!114 &81915377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81915368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c4206fe13cad341b7abef619f32ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winScreen: {fileID: 1269167669}
-  shop: {fileID: 994885185}
-  bannerID: Banner_Android
-  rewardedID: Rewarded_Android
-  videoID: Interstitial_Android
-  type: 
 --- !u!82 &81915378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1982,6 +1964,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &81915379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81915368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46199005ca023f145917f76817fb3637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenShotButton: 9
 --- !u!1 &82871422
 GameObject:
   m_ObjectHideFlags: 0
@@ -44316,7 +44311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942235839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.21, y: -26, z: -6950}
+  m_LocalPosition: {x: 1.21, y: -26, z: 0}
   m_LocalScale: {x: 38.6, y: 35.751476, z: 1472.9608}
   m_ConstrainProportionsScale: 0
   m_Children: []
