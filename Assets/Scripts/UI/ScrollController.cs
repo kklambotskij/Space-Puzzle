@@ -29,7 +29,6 @@ public class ScrollController : MonoBehaviour
             m_SelectedRectTransform = GameObject.Find((PlayerPrefs.GetInt("levelsComplete") + 5).ToString()).GetComponent<RectTransform>();
         else
             m_SelectedRectTransform = GameObject.Find((maxlvl).ToString()).gameObject.GetComponent<RectTransform>();
-        print(m_SelectedRectTransform.name + "target set");
     }
 
     void Update()
