@@ -70,7 +70,8 @@ public class WinScreen : MonoBehaviour
         if (!disabled)
         {
             disabled = true;
-            Ads.Instance.ShowRewardedVideo("Rewarded_Android");
+#warning implement Ads
+            //Ads.Instance.ShowRewardedVideo("Rewarded_Android");
         }
     }
 

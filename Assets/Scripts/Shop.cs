@@ -142,7 +142,8 @@ public class Shop : MonoBehaviour
     }
     public void WatchAd()
     {
-        Ads.Instance.ShowRewardedVideo("ShopAds");
+#warning implement Ads
+        //Ads.Instance.ShowRewardedVideo("ShopAds");
     }
     public void ResetMoney()
     {

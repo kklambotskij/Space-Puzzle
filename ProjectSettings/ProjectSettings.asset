@@ -763,7 +763,7 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 1
     Build: 0
-    Collab: 1
+    Collab: 0
     Game Performance: 0
     Purchasing: 0
     UDP: 0
@@ -781,10 +781,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 5b081162-b7de-42b0-8921-f7764599fb61
+  cloudProjectId: bb86722c-f45a-4bda-8f48-42eba65adb09
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Tile-Matching
+  projectName: SpacePuzzle
   organizationId: post-pandemic
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
